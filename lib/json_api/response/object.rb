@@ -14,6 +14,8 @@ module JSONApi
 
       end
 
+      delegate :class, :is_a?, :instance_of?, to: :__getobj__
+
       def initialize(object, metadata)
         super(object)
         @metadata = metadata

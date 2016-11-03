@@ -29,9 +29,8 @@ module JSONApi
 
       def method_missing(method, *args, **kwargs, &block)
         if endpoints.keys.include?(method)
-          if endpoints[method].is_a? CRM::Resources::Endpoint
+          if endpoints[method].is_a? JSONApi::Request::Endpoint
             params = {id: args.first}.merge(kwargs)
-            binding.pry
             endpoints[method].call(@connection, params).body
           else
             endpoints[method]
@@ -44,7 +43,7 @@ module JSONApi
       private
 
         def route(verb, name, pattern)
-          endpoints[name.to_sym] = CRM::Resources::Endpoint.new(verb: verb, pattern: pattern, options: @options) 
+          endpoints[name.to_sym] = JSONApi::Request::Endpoint.new(verb: verb, pattern: pattern, options: @options) 
         end
 
         def default_options

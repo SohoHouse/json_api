@@ -9,8 +9,9 @@ module JSONApi
         @pattern = Mustermann::Expander.new(pattern, @options)
       end
 
-      def call(connection, params)
-        connection.send(@verb, path(params))
+      def call(connection, params={})
+        payload = params.delete(:payload)
+        connection.send(@verb, path(params), payload)
       end
 
       def path(params = {})

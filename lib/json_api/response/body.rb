@@ -2,6 +2,8 @@ module JSONApi
   module Response 
     class Body < SimpleDelegator
 
+    delegate :class, :is_a?, :instance_of?, to: :__getobj__
+
     def initialize(payload, directory)
       @payload   = payload
       @directory = directory
@@ -24,11 +26,12 @@ module JSONApi
 
       def build_data!
         objects = [@payload[:data]].flatten.map do |payload| 
-          JSONApi::Object.build(payload, @directory)
+          JSONApi::Response::Object.build(payload, @directory)
         end
         return objects.first if object?
         objects
       end
 
+    end
   end
 end
