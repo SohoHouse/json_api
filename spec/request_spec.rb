@@ -1,4 +1,4 @@
 require 'spec_helper'
-describe JSONApi::Request do
+describe JSONKnife::Request do
 
 end

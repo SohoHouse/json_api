@@ -15,14 +15,14 @@ module JSONApi
 
       def wrapped_object
         if parsable_json?
-          JSONApi::Response::Body.new(body, directory)
+          JSONApi::Response::Body.new(body.with_indifferent_access, directory)
         else
           body
         end
       end
 
       def body
-        @body ||= (parsable_json? ? JSON.parse(response[:body]) : response[:body]).with_indifferent_access
+        @body ||= (parsable_json? ? JSON.parse(response[:body]) : response[:body])
       end
 
       def json?

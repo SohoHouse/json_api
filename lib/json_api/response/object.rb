@@ -8,7 +8,7 @@ module JSONApi
           id         = id
           attributes = (payload[:attributes] || {}).merge({id: payload[:id]})
           metadata   = payload.except(:type, :id, :attributes)
-          return new(payload) if type.blank?
+          return new(payload, {}) if type.blank?
           new(type.new(attributes), metadata)
         end
 

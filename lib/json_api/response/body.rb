@@ -14,19 +14,23 @@ module JSONApi
       @payload[:links]
     end
 
+    def data
+      @payload[:data] || {}
+    end
+
     def collection?
-      @payload[:data].is_a?(Array)
+      data.is_a?(Array)
     end
 
     def object?
-      @payload[:data].is_a?(Hash)
+      data.is_a?(Hash)
     end
 
     private
 
       def build_data!
-        objects = [@payload[:data]].flatten.map do |payload| 
-          JSONApi::Response::Object.build(payload, @directory)
+        objects = [data].flatten.map do |body| 
+          JSONApi::Response::Object.build(body, @directory)
         end
         return objects.first if object?
         objects
