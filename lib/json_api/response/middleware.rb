@@ -9,7 +9,7 @@ module JSONApi
 
       def call(request_env)
         @app.call(request_env).on_complete do |response_env|
-          response_env[:body] = JSONApi::Wrapper.wrap!(response_env, directory)
+          response_env[:body] = JSONApi::Response::Wrapper.wrap!(response_env, directory)
         end
       end
 
