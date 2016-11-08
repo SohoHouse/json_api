@@ -8,17 +8,37 @@ module JSONApi
           id         = id
           attributes = (payload[:attributes] || {}).merge({id: payload[:id]})
           metadata   = payload.except(:type, :id, :attributes)
-          return new(payload, {}) if type.blank?
-          new(type.new(attributes), metadata)
+          return new(payload, metadata: {}, directory: directory) if type.blank?
+          new(type.new(attributes), metadata: metadata, directory: directory)
         end
 
       end
 
       delegate :class, :is_a?, :instance_of?, to: :__getobj__
 
-      def initialize(object, metadata)
+      def initialize(object, metadata:, directory:)
         super(object)
-        @metadata = metadata
+        @metadata  = metadata
+        @directory = directory
+      end
+
+      def method_missing(method, *args, &block)
+        if relationships.key? method
+          relationships[method]
+        else
+          super
+        end
+      end
+
+      def respond_to?(method, *args)
+        relationships.key?(method) || super
+      end
+
+      def relationships
+        return {} if @metadata[:relationships].blank?
+        @relationships ||= @metadata[:relationships].each.with_object({}) do |(key, value), hash|
+          hash[key.to_sym] = JSONApi::Response::Body.new(value, @directory)
+        end
       end
 
     end
