@@ -26,15 +26,15 @@ module JSONApi
       end
 
       def json?
-        request_headers.key?("Content-Type") && request_headers["Content-Type"].include?("json") 
+        response_headers.key?("Content-Type") && response_headers["Content-Type"].include?("json") 
       end
 
       def parsable_json?
         json? && response[:body].is_a?(String)
       end
 
-      def request_headers
-        response[:request_headers]
+      def response_headers
+        response[:response_headers]
       end
     end
   end
