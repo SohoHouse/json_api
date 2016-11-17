@@ -15,18 +15,17 @@ describe JSONApi::Request::Mapper do
   
   subject do
     JSONApi::Request::Mapper.new(connection) do
-      scope :members do
-        get :all,  '/members'
-        get :find, '/members/:id'
-        scope :attachments do
-          get :all,  '/members/:member_id/attachments'
-          get :find, '/members/:member_id/attachments/:id'
+      route :business_unit, ':business_unit' do
+        route :members, 'members', new: Member do
+          route :id,          ':id'
+          route :email, 'email/:id'
         end
       end
     end
   end
 
   before do
+    binding.pry
     stubs.get(uri) { |env| [status, headers, response ] }
   end
 
