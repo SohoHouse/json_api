@@ -6,9 +6,9 @@ describe JSONApi::Response::Wrapper do
   let(:type)            { Member }
   let(:directory)       { JSONApi::Response::TypeDirectory.new }
 
-  let(:body)            { {}.to_json }
-  let(:request_headers) { { 'Content-Type' => 'application/json' } }
-  let(:response)        { { body: body, request_headers: request_headers } }
+  let(:body)             { {}.to_json }
+  let(:response_headers) { { 'Content-Type' => 'application/json' } }
+  let(:response)         { { body: body, response_headers: response_headers } }
 
   before do
     directory.register! Member
@@ -25,7 +25,7 @@ describe JSONApi::Response::Wrapper do
 
     context 'without a parsable json object' do
       let(:body)            { 'test string' }
-      let(:request_headers) { { 'Content-Type' => 'text/plain' } }
+      let(:response_headers) { { 'Content-Type' => 'text/plain' } }
 
       it 'should do nothing' do
         expect(subject).to eql(body)

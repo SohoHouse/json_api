@@ -14,8 +14,12 @@ module JSONApi
         @fragments ||= []
       end
 
+      def new
+        current_route.build(connection)
+      end
+
       def get
-        @connection.get(to_url)
+        @connection.get(to_url).body
       end
 
       def method_missing(method, *args, **kwargs, &block)
