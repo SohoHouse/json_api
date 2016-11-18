@@ -16,7 +16,7 @@ module JSONApi
       def arguments
         @arguments ||= @kwargs.merge({
           route.arguments.first => @args.first
-        })
+        }).reject {|k, v| k.blank? || v.blank? }
       end
 
       def call

@@ -14,17 +14,30 @@ module JSONApi
         @fragments ||= []
       end
 
-      def new
-        current_route.build(connection)
+      def new(**args)
+        raise NoMethodError unless current_route && current_route.new_class
+        JSONApi::Request::Object.new(current_route.new_class.new(args), self)
       end
 
       def get
         @connection.get(to_url).body
       end
 
+      def post(payload)
+        @connection.post(to_url, payload).body
+      end
+
+      def delete
+        @connection.delete(to_url).body
+      end
+
+      def put(payload)
+        @connection.put(to_url, payload).body
+      end
+
       def method_missing(method, *args, **kwargs, &block)
         if current_route && current_route[method]
-          capture(current_route[method], args, kwargs, &block)
+          capture(current_route[method], *args, kwargs, &block)
           self
         else
           super

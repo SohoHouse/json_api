@@ -8,14 +8,5 @@ module JSONApi
       to_s <=> other.to_s
     end
 
-    def initialize(args)
-      @client = args.delete(:client) if args[:client]
-      super(args)
-    end
-
-    def client
-      @client.blank? ? parent.client : @client
-    end
-
   end
 end

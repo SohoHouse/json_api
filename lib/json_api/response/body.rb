@@ -4,10 +4,16 @@ module JSONApi
 
     delegate :class, :is_a?, :instance_of?, to: :__getobj__
 
-    def initialize(payload, directory)
+    attr_reader :builder
+    def initialize(payload, directory, builder=nil)
       @payload   = payload
       @directory = directory
       super(build_data!)
+    end
+
+    def with_builder(builder)
+      @builder = builder
+      self
     end
 
     def links

@@ -8,8 +8,12 @@ module JSONApi
       def initialize(name: nil, fragment: nil, **options, &block)
         @name     = name
         @options  = options.reverse_merge(default_options)
-        @fragment = Mustermann.new(fragment, mustermann_options) if name
+        @fragment = Mustermann::Expander.new(fragment, mustermann_options) if name
         instance_exec self, &block if block_given?
+      end
+
+      def new_class
+        @options[:new]
       end
 
       def route(name, fragment, **options, &block)
@@ -17,7 +21,7 @@ module JSONApi
       end
 
       def arguments
-        fragment ? fragment.names.map(&:to_sym) : []
+        fragment ? fragment.patterns.first.names.map(&:to_sym) : []
       end
 
       def routes
@@ -27,13 +31,14 @@ module JSONApi
       private
 
         def mustermann_options
-          @options.slice(:type)
+          @options.slice(:type, :additional_values)
         end
 
         def default_options
           {
             new: nil,
             type: :rails,
+            additional_values: :append
           }
         end
 

@@ -22,6 +22,10 @@ module JSONApi
         @directory = directory
       end
 
+      def save
+        builder.put(as_json)
+      end
+
       def method_missing(method, *args, &block)
         if relationships.key? method
           relationships[method]
@@ -37,7 +41,7 @@ module JSONApi
       def relationships
         return {} if @metadata[:relationships].blank?
         @relationships ||= @metadata[:relationships].each.with_object({}) do |(key, value), hash|
-          hash[key.to_sym] = JSONApi::Response::Body.new(value, @directory)
+          hash[key.to_sym] = JSONApi::Response::Body.new(value, @directory, @builder)
         end
       end
 
