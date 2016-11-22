@@ -4,11 +4,13 @@ module JSONApi
 
       delegate :[], to: :routes
 
-      attr_reader :fragment
+      attr_reader :fragment, :routes
+
       def initialize(name: nil, fragment: nil, **options, &block)
         @name     = name
         @options  = options.reverse_merge(default_options)
         @fragment = Mustermann::Expander.new(fragment, mustermann_options) if name
+        @routes   = {}
         instance_exec self, &block if block_given?
       end
 
@@ -22,10 +24,6 @@ module JSONApi
 
       def arguments
         fragment ? fragment.patterns.first.names.map(&:to_sym) : []
-      end
-
-      def routes
-        @routes ||= {}
       end
 
       private

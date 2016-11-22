@@ -2,16 +2,15 @@ module JSONApi
   module Request
     class Builder
 
+      attr_reader :fragments
+
       def initialize(connection)
         @connection = connection
+        @fragments = []
       end
 
       def capture(route, *args, **kwargs)
         fragments << JSONApi::Request::Fragment.new(route, args, kwargs)
-      end
-
-      def fragments
-        @fragments ||= []
       end
 
       def new(**args)
