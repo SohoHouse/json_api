@@ -19,7 +19,8 @@ module JSONApi
       end
 
       def route(name, fragment, **options, &block)
-        routes[name.to_sym] = self.class.new(name: name, fragment: fragment, **options, &block)
+        routes[name.to_sym] =
+          self.class.new(name: name, fragment: fragment, **options, &block)
       end
 
       def arguments
