@@ -21,7 +21,7 @@ describe JSONApi::Response::Wrapper do
       it 'should wrap and return a JSONApi::Response::Body' do
         expect(subject).to be_a JSONApi::Response::Body
       end
-    end 
+    end
 
     context 'without a parsable json object' do
       let(:body)            { 'test string' }
@@ -33,6 +33,5 @@ describe JSONApi::Response::Wrapper do
     end
 
   end
-
 
 end

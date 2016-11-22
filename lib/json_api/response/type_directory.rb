@@ -1,7 +1,7 @@
 module JSONApi
   module Response
     class TypeDirectory
-      
+
       delegate :[], to: :directory
 
       attr_reader :directory
