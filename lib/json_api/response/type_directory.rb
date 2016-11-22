@@ -10,7 +10,7 @@ module JSONApi
       end
 
       def register!(object, type: nil)
-        key = (type || object.to_s.demodulize.pluralize.underscore.to_sym)
+        key = type || object.to_s.demodulize.pluralize.underscore.to_sym
         @directory[key] = object
       end
 
