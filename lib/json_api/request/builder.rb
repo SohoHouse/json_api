@@ -13,8 +13,8 @@ module JSONApi
         fragments << JSONApi::Request::Fragment.new(route, args, kwargs)
       end
 
-      def new(**args)
-        JSONApi::Request::Object.new(current_route.new_class.new(args), self)
+      def new(**kwargs)
+        JSONApi::Request::Object.new(current_route.new_class.new(kwargs), self)
       end
 
       def get
