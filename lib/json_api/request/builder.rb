@@ -14,7 +14,6 @@ module JSONApi
       end
 
       def new(**args)
-        raise NoMethodError unless current_route && current_route.new_class
         JSONApi::Request::Object.new(current_route.new_class.new(args), self)
       end
 
