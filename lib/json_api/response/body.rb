@@ -38,8 +38,7 @@ module JSONApi
         objects = [data].flatten.map do |body|
           JSONApi::Response::Object.build(body, @directory)
         end
-        return objects.first if object?
-        objects
+        object? ? objects.first : objects
       end
 
     end
