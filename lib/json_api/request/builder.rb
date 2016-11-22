@@ -35,8 +35,8 @@ module JSONApi
       end
 
       def method_missing(method, *args, **kwargs, &block)
-        if current_route && current_route[method]
-          capture(current_route[method], *args, kwargs, &block)
+        if current_route && current_route.key?(method)
+          capture(current_route.fetch(method), *args, kwargs, &block)
           self
         else
           super

@@ -9,9 +9,9 @@ module JSONApi
       end
 
       def method_missing(method, *args, **kwargs, &block)
-        if @root[method.to_sym]
+        if @root.key?(method.to_sym)
           JSONApi::Request::Builder.new(connection).tap do |x|
-            x.capture @root[method.to_sym], args, kwargs
+            x.capture @root.fetch(method.to_sym), args, kwargs
           end
         else
           super

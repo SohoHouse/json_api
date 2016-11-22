@@ -2,7 +2,7 @@ module JSONApi
   module Request
     class Route
 
-      delegate :[], to: :routes
+      delegate :key?, :fetch, to: :routes
 
       attr_reader :fragment, :routes
 
@@ -15,7 +15,7 @@ module JSONApi
       end
 
       def new_class
-        @options[:new]
+        @options.fetch(:new)
       end
 
       def route(name, fragment, **options, &block)

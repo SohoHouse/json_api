@@ -17,11 +17,11 @@ module JSONApi
     end
 
     def links
-      @payload[:links]
+      @payload.fetch(:links)
     end
 
     def data
-      @payload[:data] || {}
+      @payload.fetch(:data, {})
     end
 
     def collection?
