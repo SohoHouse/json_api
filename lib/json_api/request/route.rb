@@ -8,7 +8,7 @@ module JSONApi
 
       def initialize(name: nil, fragment: nil, **options, &block)
         @name     = name
-        @options  = options.reverse_merge(default_options)
+        @options  = default_options.merge(options)
         @fragment = Mustermann::Expander.new(fragment, mustermann_options) if name
         @routes   = {}
         instance_exec self, &block if block_given?
