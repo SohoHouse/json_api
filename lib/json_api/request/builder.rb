@@ -6,12 +6,10 @@ module JSONApi
 
       def initialize(connection)
         @connection = connection
-        @fragments = []
+        @fragments = FragmentCollection.new
       end
 
-      def capture(route, *args, **kwargs)
-        fragments << JSONApi::Request::Fragment.new(route, args, kwargs)
-      end
+      delegate :capture, :to_url, to: :@fragments
 
       def new(**kwargs)
         JSONApi::Request::Object.new(current_route.new_class.new(kwargs), self)
@@ -46,16 +44,11 @@ module JSONApi
         current_route && current_route.key?(method)
       end
 
-      def to_url
-        fragments.map(&:call).compact.join('/')
-      end
-
       private
 
         def current_route
-          fragments.last.route if fragments.last
+          fragments.last_fragment_route
         end
-
     end
   end
 end
