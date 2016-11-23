@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'support/member'
 
-describe JSONApi::Request::Mapper do
+RSpec.describe JSONApi::Request::Mapper do
 
   let(:stubs)      { Faraday::Adapter::Test::Stubs.new }
   let(:connection) { Faraday.new { |builder| builder.adapter(:test, stubs) } }
