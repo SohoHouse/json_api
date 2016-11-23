@@ -34,7 +34,7 @@ module JSONApi
         end
       end
 
-      def respond_to?(method, *args)
+      def respond_to_missing?(method, *)
         relationships.key?(method) || super
       end
 
