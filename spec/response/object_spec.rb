@@ -2,7 +2,7 @@ require 'support/member'
 require 'support/member/venue'
 require 'spec_helper'
 
-describe JSONApi::Response::Object do
+RSpec.describe JSONApi::Response::Object do
 
   let(:directory)       { JSONApi::Response::TypeDirectory.new }
   let(:type)            { Member }

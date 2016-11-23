@@ -1,4 +1,4 @@
 require 'spec_helper'
-describe JSONApi::Request do
 
+RSpec.describe JSONApi::Request do
 end

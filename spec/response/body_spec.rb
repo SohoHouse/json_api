@@ -1,7 +1,7 @@
 require 'support/member'
 require 'spec_helper'
 
-describe JSONApi::Response::Body do
+RSpec.describe JSONApi::Response::Body do
 
   let(:response_object) { Member }
   let(:directory)       { JSONApi::Response::TypeDirectory.new }

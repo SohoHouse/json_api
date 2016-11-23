@@ -41,7 +41,7 @@ module JSONApi
       def relationships
         return {} if @metadata[:relationships].blank?
         @relationships ||= @metadata[:relationships].each.with_object({}) do |(key, value), hash|
-          hash[key.to_sym] = JSONApi::Response::Body.new(value, @directory, @builder)
+          hash[key.to_sym] = JSONApi::Response::Body.new(value, @directory, nil)
         end
       end
 
