@@ -42,7 +42,7 @@ module JSONApi
         end
       end
 
-      def respond_to?(method)
+      def respond_to_missing?(method, *)
         current_route && current_route.key?(method)
       end
 

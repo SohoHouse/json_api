@@ -18,7 +18,7 @@ module JSONApi
         end
       end
 
-      def respond_to?(method)
+      def respond_to_missing?(method, *)
         @root.key?(method.to_sym)
       end
 
