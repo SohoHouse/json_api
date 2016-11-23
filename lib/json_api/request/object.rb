@@ -1,7 +1,7 @@
 module JSONApi
   module Request
     class Object < SimpleDelegator
-      
+
       delegate :class, :is_a?, :instance_of?, to: :__getobj__
 
       attr_reader :builder

@@ -12,7 +12,7 @@ describe JSONApi::Request::Mapper do
   let(:headers)       { {} }
   let(:response)      { {}.to_json }
   let(:uri)           { '/' }
-  
+
   subject do
     JSONApi::Request::Mapper.new(connection) do
       route :members, 'members', new: Member do

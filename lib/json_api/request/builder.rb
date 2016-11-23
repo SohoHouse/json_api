@@ -2,21 +2,19 @@ module JSONApi
   module Request
     class Builder
 
+      attr_reader :fragments
+
       def initialize(connection)
         @connection = connection
+        @fragments = []
       end
 
       def capture(route, *args, **kwargs)
         fragments << JSONApi::Request::Fragment.new(route, args, kwargs)
       end
 
-      def fragments
-        @fragments ||= []
-      end
-
-      def new(**args)
-        raise NoMethodError unless current_route && current_route.new_class
-        JSONApi::Request::Object.new(current_route.new_class.new(args), self)
+      def new(**kwargs)
+        JSONApi::Request::Object.new(current_route.new_class.new(kwargs), self)
       end
 
       def get
@@ -36,8 +34,8 @@ module JSONApi
       end
 
       def method_missing(method, *args, **kwargs, &block)
-        if current_route && current_route[method]
-          capture(current_route[method], *args, kwargs, &block)
+        if current_route && current_route.key?(method)
+          capture(current_route.fetch(method), *args, kwargs, &block)
           self
         else
           super

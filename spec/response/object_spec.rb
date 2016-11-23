@@ -47,7 +47,7 @@ describe JSONApi::Response::Object do
 
   it { expect(subject.respond_to?(:venue)).to be_truthy }
   it { expect(subject.respond_to?(:missing_key)).to be_falsey}
-  
+
   it { expect(subject.venue.first.id).to eql(venue_id) }
 
 end

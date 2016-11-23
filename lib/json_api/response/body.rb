@@ -1,5 +1,5 @@
 module JSONApi
-  module Response 
+  module Response
     class Body < SimpleDelegator
 
     delegate :class, :is_a?, :instance_of?, to: :__getobj__
@@ -17,11 +17,11 @@ module JSONApi
     end
 
     def links
-      @payload[:links]
+      @payload.fetch(:links)
     end
 
     def data
-      @payload[:data] || {}
+      @payload.fetch(:data, {})
     end
 
     def collection?
@@ -35,11 +35,10 @@ module JSONApi
     private
 
       def build_data!
-        objects = [data].flatten.map do |body| 
+        objects = [data].flatten.map do |body|
           JSONApi::Response::Object.build(body, @directory)
         end
-        return objects.first if object?
-        objects
+        object? ? objects.first : objects
       end
 
     end

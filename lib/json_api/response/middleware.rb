@@ -2,7 +2,9 @@ module JSONApi
   module Response
     class Middleware < Faraday::Middleware
 
-      def initialize(app, directory:)
+      attr_reader :directory
+
+      def initialize(app, directory: JSONApi::Response::TypeDirectory.new)
         super(app)
         @directory = directory
       end
@@ -11,10 +13,6 @@ module JSONApi
         @app.call(request_env).on_complete do |response_env|
           response_env[:body] = JSONApi::Response::Wrapper.wrap!(response_env, directory)
         end
-      end
-
-      def directory
-        @directory || JSONApi::Response::TypeDirectory.new
       end
 
     end
