@@ -34,12 +34,16 @@ module JSONApi
       end
 
       def method_missing(method, *args, **kwargs, &block)
-        if current_route && current_route.key?(method)
+        if respond_to?(method)
           capture(current_route.fetch(method), *args, kwargs, &block)
           self
         else
           super
         end
+      end
+
+      def respond_to?(method)
+        current_route && current_route.key?(method)
       end
 
       def to_url

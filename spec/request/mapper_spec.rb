@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'support/member'
 
 describe JSONApi::Request::Mapper do
 
@@ -22,6 +23,26 @@ describe JSONApi::Request::Mapper do
           end
         end
       end
+    end
+  end
+
+  describe 'respond_to?' do
+    it 'is true when the method is available' do
+      expect(subject.respond_to?('members')).to be_truthy
+    end
+
+    it 'is false when the method is unavailble' do
+      expect(subject.respond_to?('blah')).to be_falsey
+    end
+  end
+
+  context 'calling arbitrary methods' do
+    it 'returns a new instance with a narrowed scope' do
+      expect(subject.members).not_to eq(subject)
+    end
+
+    it 'raises an exception when the method is unavailable' do
+      expect { subject.blah }.to raise_exception(NoMethodError)
     end
   end
 
