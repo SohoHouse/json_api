@@ -5,6 +5,11 @@ require 'simplecov'
 require 'simplecov-rcov'
 SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
 
+if ENV.key?('CIRCLE_ARTIFACTS')
+  dir = File.join(ENV.fetch('CIRCLE_ARTIFACTS'), "coverage")
+  SimpleCov.coverage_dir dir
+end
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
