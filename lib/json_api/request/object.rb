@@ -11,7 +11,7 @@ module JSONApi
       end
 
       def save
-        builder.post(as_json)
+        builder.post(attributes)
       end
 
     end
