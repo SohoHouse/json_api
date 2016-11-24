@@ -1,9 +1,5 @@
-require 'json_api'
-require 'pry'
-
 require 'simplecov'
-require 'simplecov-rcov'
-SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
+require 'json_api'
 
 if ENV.key?('CIRCLE_ARTIFACTS')
   dir = File.join(ENV.fetch('CIRCLE_ARTIFACTS'), "coverage")
