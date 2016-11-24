@@ -1,5 +1,4 @@
 require 'simplecov'
-require 'json_api'
 
 if ENV.key?('CIRCLE_ARTIFACTS')
   dir = File.join(ENV.fetch('CIRCLE_ARTIFACTS'), "coverage")

@@ -1,5 +1,5 @@
+require 'json_api'
 require 'support/member'
-require 'spec_helper'
 
 RSpec.describe JSONApi::Response::Wrapper do
 

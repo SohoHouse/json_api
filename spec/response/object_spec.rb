@@ -1,6 +1,6 @@
+require 'json_api'
 require 'support/member'
 require 'support/member/venue'
-require 'spec_helper'
 
 RSpec.describe JSONApi::Response::Object do
 
