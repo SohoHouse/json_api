@@ -1,3 +1,6 @@
+require 'virtus'
+require 'virtus/relations'
+
 module JSONApi
   class Model
     include Comparable

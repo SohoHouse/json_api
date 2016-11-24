@@ -1,3 +1,6 @@
+require 'active_support/core_ext/module/delegation'
+require 'active_support/core_ext/object/blank'
+
 module JSONApi
   module Response
     class Object < SimpleDelegator

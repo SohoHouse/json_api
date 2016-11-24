@@ -1,4 +1,5 @@
-require 'json_api'
+require 'faraday'
+require 'json_api/request/mapper'
 require 'support/member'
 
 RSpec.describe JSONApi::Request::Mapper do

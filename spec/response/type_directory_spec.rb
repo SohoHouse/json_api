@@ -1,4 +1,4 @@
-require 'json_api'
+require 'json_api/response/type_directory'
 require 'support/member'
 
 RSpec.describe JSONApi::Response::TypeDirectory do

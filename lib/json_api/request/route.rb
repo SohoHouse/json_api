@@ -1,3 +1,8 @@
+require 'active_support/core_ext/hash/slice'
+require 'active_support/core_ext/module/delegation'
+require 'mustermann'
+require 'mustermann/rails'
+
 module JSONApi
   module Request
     class Route

@@ -1,3 +1,5 @@
+require 'json_api/request/fragment'
+
 module JSONApi
   module Request
     class FragmentCollection

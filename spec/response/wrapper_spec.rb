@@ -1,4 +1,6 @@
-require 'json_api'
+require 'json_api/response/body'
+require 'json_api/response/type_directory'
+require 'json_api/response/wrapper'
 require 'support/member'
 
 RSpec.describe JSONApi::Response::Wrapper do
