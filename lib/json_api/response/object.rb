@@ -23,7 +23,7 @@ module JSONApi
       end
 
       def save
-        builder.put(as_json)
+        builder.put(attributes)
       end
 
       def method_missing(method, *args, &block)

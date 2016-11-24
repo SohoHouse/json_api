@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'json_api'
 
 RSpec.describe JSONApi::Request do
 end

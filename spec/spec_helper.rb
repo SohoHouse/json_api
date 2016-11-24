@@ -1,5 +1,9 @@
-require 'json_api'
-require 'pry'
+require 'simplecov'
+
+if ENV.key?('CIRCLE_ARTIFACTS')
+  dir = File.join(ENV.fetch('CIRCLE_ARTIFACTS'), "coverage")
+  SimpleCov.coverage_dir dir
+end
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -18,6 +22,8 @@ RSpec.configure do |config|
 
   if config.files_to_run.one?
     config.default_formatter = 'doc'
+  else
+    SimpleCov.start
   end
 
   config.profile_examples = 10

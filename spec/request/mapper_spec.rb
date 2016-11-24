@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'json_api'
 require 'support/member'
 
 RSpec.describe JSONApi::Request::Mapper do
