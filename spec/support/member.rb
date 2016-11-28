@@ -1,8 +1,8 @@
-require 'json_api/model'
+require 'virtus'
 
-class Member < JSONApi::Model
+class Member
+  include Virtus.model
 
   attribute :id,   String
   attribute :name, String
-
 end

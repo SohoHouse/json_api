@@ -1,10 +1,10 @@
-require 'json_api/model'
+require 'virtus'
 
 class Member
-  class Venue < JSONApi::Model
+  class Venue
+    include Virtus.model
 
     attribute :id,   String
     attribute :name, String
-
   end
 end
