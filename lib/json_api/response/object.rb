@@ -25,10 +25,6 @@ module JSONApi
         @directory = directory
       end
 
-      def save
-        builder.put(attributes)
-      end
-
       def method_missing(method, *args, &block)
         if relationships.key? method
           relationships[method]
