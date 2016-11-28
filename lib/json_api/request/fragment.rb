@@ -13,10 +13,6 @@ module JSONApi
         }).reject { |k, v| k.blank? || v.blank? }
       end
 
-      def primary_argument
-        route.fragment.arguments.first
-      end
-
       def call
         route.fragment.expand(arguments)
       end
