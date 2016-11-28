@@ -14,11 +14,6 @@ module JSONApi
       super(build_data!)
     end
 
-    def with_builder(builder)
-      @builder = builder
-      self
-    end
-
     def links
       @payload.fetch(:links)
     end

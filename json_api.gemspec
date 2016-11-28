@@ -33,8 +33,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "faraday"
   spec.add_dependency "mustermann"
   spec.add_dependency "mustermann-rails"
-  spec.add_dependency 'virtus'
-  spec.add_dependency "virtus-relations"
 
   spec.add_development_dependency "bundler", "~> 1.13"
   spec.add_development_dependency "rake", "~> 10.0"
@@ -42,4 +40,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'simplecov-rcov'
+  spec.add_development_dependency 'virtus'
 end
