@@ -1,3 +1,5 @@
+require 'json_api/model'
+
 class Member
   class Venue < JSONApi::Model
 

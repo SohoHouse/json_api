@@ -1,3 +1,6 @@
+require 'active_support/core_ext/hash/indifferent_access'
+require 'json_api/response/body'
+
 module JSONApi
   module Response
     class Wrapper

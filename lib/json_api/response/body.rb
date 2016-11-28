@@ -1,3 +1,6 @@
+require 'active_support/core_ext/module/delegation'
+require 'json_api/response/object'
+
 module JSONApi
   module Response
     class Body < SimpleDelegator

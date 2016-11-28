@@ -1,3 +1,6 @@
+require 'json_api/request/fragment_collection'
+require 'json_api/request/object'
+
 module JSONApi
   module Request
     class Builder

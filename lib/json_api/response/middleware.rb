@@ -1,3 +1,7 @@
+require 'faraday'
+require 'json_api/response/type_directory'
+require 'json_api/response/wrapper'
+
 module JSONApi
   module Response
     class Middleware < Faraday::Middleware
